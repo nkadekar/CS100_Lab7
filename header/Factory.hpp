@@ -8,7 +8,7 @@ using namespace std;
 
 class Factory {
     public:
-        Base* parse(){
+        Base* parse(char** input, int length){
 
         }
 };
