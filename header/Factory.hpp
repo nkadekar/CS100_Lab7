@@ -25,39 +25,41 @@ class Factory {
                 cout << input[i];
             }
             cout << endl;
-            // stack<Base*> OperandStack;
-            // stack<string> OperatorStack;
-            // for (all tokenized strings){
-            //     if (i.isdigit()){
-            //         OperandStack.push(new Op(i));
-            //     }
-            //     else {
-            //         OperatorStack.push(i);
-            //     }
-            // }
-            // while (OperatorStack.size() != 0){
-            //     string temp = OperatorStack.top();
-            //     Base* rC = OperandStack.top();
-            //     OperandStack.pop();
-            //     Base* lC = OperandStack.top();
-            //     OperandStack.pop();
-            //     if (temp == "+"){
-            //         OperandStack.push(new Add(lC, rC));
-            //     }
-            //     else if (temp == "-"){
-            //         OperandStack.push(new Sub(lC, rC));
-            //     }
-            //     else if (temp == "/*"){
-            //         OperandStack.push(new Mult(lC, rC));
-            //     }
-            //     else if (temp == "/"){
-            //         OperandStack.push(new Div(lC, rC));
-            //     }
-            //     else if (temp == "**"){
-            //         OperandStack.push(new Pow(lC, rC));
-            //     }
-            //     OperatorStack.pop();
-            // }
+
+
+            stack<Base*> OperandStack;
+            stack<string> OperatorStack;
+            for (int i = 1; i < length; i++){
+                if (input[i].isdigit()){ //??????????????????????????????????????
+                    OperandStack.push(new Op(i));
+                }
+                else {
+                    OperatorStack.push(i);
+                }
+            }
+            while (OperatorStack.size() != 0){
+                string temp = OperatorStack.top();
+                Base* rC = OperandStack.top();
+                OperandStack.pop();
+                Base* lC = OperandStack.top();
+                OperandStack.pop();
+                if (temp == "+"){
+                    OperandStack.push(new Add(lC, rC));
+                }
+                else if (temp == "-"){
+                    OperandStack.push(new Sub(lC, rC));
+                }
+                else if (temp == "/*"){
+                    OperandStack.push(new Mult(lC, rC));
+                }
+                else if (temp == "/"){
+                    OperandStack.push(new Div(lC, rC));
+                }
+                else if (temp == "/*/*"){
+                    OperandStack.push(new Pow(lC, rC));
+                }
+                OperatorStack.pop();
+            }
             return nullptr;
         }
 };
