@@ -22,8 +22,9 @@ class Factory {
 					return false;
 				}
 			return true;
+			}
 		}
-		Base* result = nullptr;
+		Base* result;
     public:
         Base* parse(char** input, int length){
 			result = checkDigit(input[1]) ? new Op((stoi(input[1]))): nullptr;
