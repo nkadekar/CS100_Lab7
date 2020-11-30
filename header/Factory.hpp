@@ -40,7 +40,6 @@ class Factory {
             //     OperandStack.pop();
             //     Base* lC = OperandStack.top();
             //     OperandStack.pop();
-
             //     if (temp == "+"){
             //         OperandStack.push(new Add(lC, rC));
             //     }
