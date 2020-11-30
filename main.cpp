@@ -4,7 +4,13 @@ using namespace std;
 
 int main(int argc, char** argv){
     Factory* test = new Factory();
-    test->parse(argv, argc);
-    
+    Base* answer = test->parse(argv, argc);
+    if (answer == nullptr){
+        cout << "Invalid Input" << endl;
+    }
+    else {
+        cout << answer->stringify() << endl;
+    }
+
     return 0;
 }

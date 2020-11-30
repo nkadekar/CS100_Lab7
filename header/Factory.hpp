@@ -12,6 +12,8 @@
 
 #include <string>
 #include <stack>
+#include <cctype>
+#include <algorithm>
 
 using namespace std;
 
@@ -20,24 +22,17 @@ class Factory {
         Factory(){}
 
         Base* parse(char** input, int length){
-            //cout << input[] << endl;
-            for (int i = 1; i < length; i++){
-                cout << input[i];
-            }
-            cout << endl;
-
-
             stack<Base*> OperandStack;
             stack<string> OperatorStack;
             for (int i = 1; i < length; i++){
-                if (input[i].isdigit()){ //??????????????????????????????????????
-                    OperandStack.push(new Op(i));
+                if (is_number(input[i])){
+                    OperandStack.push(new Op(stod(input[i])));
                 }
                 else {
-                    OperatorStack.push(i);
+                    OperatorStack.push(input[i]);
                 }
             }
-            while (OperatorStack.size() != 0){
+            while (!OperatorStack.empty()){
                 string temp = OperatorStack.top();
                 Base* rC = OperandStack.top();
                 OperandStack.pop();
@@ -58,9 +53,18 @@ class Factory {
                 else if (temp == "/*/*"){
                     OperandStack.push(new Pow(lC, rC));
                 }
+                else {
+                    return nullptr;
+                }
                 OperatorStack.pop();
             }
-            return nullptr;
+            return OperandStack.top();
+        }
+
+        bool is_number(const std::string s){
+            char* end = nullptr;
+            double val = strtod(s.c_str(), &end);
+            return end != s.c_str() && *end == '\0' && val != HUGE_VAL;
         }
 };
 
