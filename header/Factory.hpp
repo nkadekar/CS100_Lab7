@@ -44,13 +44,13 @@ class Factory {
                 else if (temp == "-"){
                     OperandStack.push(new Sub(lC, rC));
                 }
-                else if (temp == "/*"){
+                else if (temp == "\*"){
                     OperandStack.push(new Mult(lC, rC));
                 }
                 else if (temp == "/"){
                     OperandStack.push(new Div(lC, rC));
                 }
-                else if (temp == "/*/*"){
+                else if (temp == "\*\*"){
                     OperandStack.push(new Pow(lC, rC));
                 }
                 else {
