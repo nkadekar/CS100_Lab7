@@ -24,6 +24,7 @@ class Factory {
             for (int i = 1; i < length; i++){
                 cout << input[i];
             }
+            cout << endl;
             // stack<Base*> OperandStack;
             // stack<string> OperatorStack;
             // for (all tokenized strings){
