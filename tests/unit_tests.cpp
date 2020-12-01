@@ -34,7 +34,7 @@ TEST(FactoryTest, InvalidInput3){
     EXPECT_EQ(base, nullptr);
 }
 
-TEST(FactoryTest, InvalidInput4){
+TEST(FactoryTest, OneInput){
     const char* input[] = {"./test", "2"};
     int numInputs = 2;
     Factory calculate;
@@ -96,6 +96,30 @@ TEST(FactoryTest, DoubleResult){
     Factory calculate;
     Base* base = calculate.parse((char**)input, numInputs);
     EXPECT_NEAR(base->evaluate(), 137.5, 0.001);
+}
+
+TEST(FactoryTest, DoubleResultStringify){
+    const char* input[] = {"./test", "5", "*", "5.5", "*", "5"};    
+	int numInputs = 6;
+    Factory calculate;
+    Base* base = calculate.parse((char**)input, numInputs);
+    EXPECT_EQ(base->stringify(), "5 * 5.5 * 5");
+}
+
+TEST(FactoryTest, LargeStringify){
+    const char* input[] = {"./test", "6", "+", "2", "-", "3", "*", "4", "/", "5", "**", "2"};
+    int numInputs = 12;
+    Factory calculate;
+    Base* base = calculate.parse((char**)input, numInputs);
+    EXPECT_EQ(base->stringify(), "6 + 2 - 3 * 4 / 5 ** 2");
+}
+
+TEST(FactoryTest, NegativeResultStringify){
+    const char* input[] = {"./test", "1", "*", "4", "-", "5"};
+    int numInputs = 6;
+    Factory calculate;
+    Base* base = calculate.parse((char**)input, numInputs);
+    EXPECT_EQ(base->stringify(), "1 * 4 - 5");
 }
 
 int main(int argc, char** argv){
