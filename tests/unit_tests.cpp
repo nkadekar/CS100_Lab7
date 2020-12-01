@@ -59,11 +59,11 @@ TEST(FactoryTest, NegativeResult){
 }
 
 TEST(FactoryTest, DoubleInCalculation){
-    const char* input[] = {"./test", "17", "*", "68", "/", "9", "*", "2"};
-    int numInputs = 18;
+    const char* input[] = {"./test", "7", "*", "68", "/", "9", "*", "2"};
+    int numInputs = 8;
     Factory calculate;
     Base* base = calculate.parse((char**)input, numInputs);
-    EXPECT_NEAR(base->evaluate(), 256.89, 0.001);
+    EXPECT_NEAR(base->evaluate(), 105.777, 0.001);
 }
 
 TEST(FactoryTest, DoubleResult){
