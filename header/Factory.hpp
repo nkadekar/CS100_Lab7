@@ -27,7 +27,7 @@ class Factory {
             }
             stack<Base*> OperandStack;
             stack<string> OperatorStack;
-            for (int i = 1; i < length; i++){
+            for (int i = length - 1; i >= 1; i--){
                 if (is_number(input[i])){
                     OperandStack.push(new Op(stod(input[i])));
                 }
@@ -40,9 +40,9 @@ class Factory {
 			}
             while (!OperatorStack.empty()){
                 string temp = OperatorStack.top();
-                Base* rC = OperandStack.top();
-                OperandStack.pop();
                 Base* lC = OperandStack.top();
+                OperandStack.pop();
+                Base* rC = OperandStack.top();
                 OperandStack.pop();
                 if (temp == "+"){
                     OperandStack.push(new Add(lC, rC));

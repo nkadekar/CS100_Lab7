@@ -10,6 +10,7 @@ int main(int argc, char** argv){
     }
     else {
         cout << answer->stringify() << endl;
+        cout << answer->evaluate() << endl;
     }
 
     return 0;
