@@ -18,6 +18,30 @@ TEST(FactoryTest, InvalidInput){
     EXPECT_EQ(base, nullptr);
 }
 
+TEST(FactoryTest, InvalidInput2){
+    const char* input[] = {"./test", "2", "*", "3", "+"};
+    int numInputs = 5;
+    Factory calculate;
+    Base* base = calculate.parse((char**)input, numInputs);
+    EXPECT_EQ(base, nullptr);
+}
+
+TEST(FactoryTest, InvalidInput3){
+    const char* input[] = {"./test", "2", "*", "3", "4"};
+    int numInputs = 5;
+    Factory calculate;
+    Base* base = calculate.parse((char**)input, numInputs);
+    EXPECT_EQ(base, nullptr);
+}
+
+TEST(FactoryTest, InvalidInput4){
+    const char* input[] = {"./test", "2"};
+    int numInputs = 2;
+    Factory calculate;
+    Base* base = calculate.parse((char**)input, numInputs);
+    EXPECT_EQ(base->evaluate(), 2);
+}
+
 TEST(FactoryTest, ManyInput){
     const char* input[] = {"./test", "6", "+", "2", "-", "3", "*", "4", "/", "5", "**", "2"};
     int numInputs = 12;
