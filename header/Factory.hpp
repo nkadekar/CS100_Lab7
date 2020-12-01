@@ -22,7 +22,7 @@ class Factory {
         Factory(){}
 
         Base* parse(char** input, int length){
-            if (length <= 1){
+            if (length <= 1 || length % 2 != 0){
                 return nullptr;
             }
             stack<Base*> OperandStack;
@@ -35,6 +35,9 @@ class Factory {
                     OperatorStack.push(input[i]);
                 }
             }
+			if (OperandStack.size() <= OperatorStack.size()){
+				return nullptr;
+			}
             while (!OperatorStack.empty()){
                 string temp = OperatorStack.top();
                 Base* rC = OperandStack.top();
@@ -47,13 +50,13 @@ class Factory {
                 else if (temp == "-"){
                     OperandStack.push(new Sub(lC, rC));
                 }
-                else if (temp == "\*"){
+                else if (temp == "*"){
                     OperandStack.push(new Mult(lC, rC));
                 }
                 else if (temp == "/"){
                     OperandStack.push(new Div(lC, rC));
                 }
-                else if (temp == "\*\*"){
+                else if (temp == "**"){
                     OperandStack.push(new Pow(lC, rC));
                 }
                 else {
