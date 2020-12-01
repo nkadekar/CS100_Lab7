@@ -22,6 +22,9 @@ class Factory {
         Factory(){}
 
         Base* parse(char** input, int length){
+            if (length <= 1){
+                return nullptr;
+            }
             stack<Base*> OperandStack;
             stack<string> OperatorStack;
             for (int i = 1; i < length; i++){
