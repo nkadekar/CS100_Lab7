@@ -16,6 +16,7 @@ TEST(FactoryTest, OpTest){
     Factory calculate;
     Base* base = calculate.parse((char**)input, numInputs);
     EXPECT_EQ(base->evaluate(), 2);
+    EXPECT_EQ(base->stringify(), "2");
 }
 
 TEST(FactoryTest, AddTest){
@@ -24,6 +25,7 @@ TEST(FactoryTest, AddTest){
     Factory calculate;
     Base* base = calculate.parse((char**)input, numInputs);
     EXPECT_EQ(base->evaluate(), 5);
+    EXPECT_EQ(base->stringify(), "2 + 3");
 }
 
 TEST(FactoryTest, SubTest){
@@ -32,6 +34,7 @@ TEST(FactoryTest, SubTest){
     Factory calculate;
     Base* base = calculate.parse((char**)input, numInputs);
     EXPECT_EQ(base->evaluate(), -1);
+    EXPECT_EQ(base->stringify(), "2 - 3");
 }
 
 TEST(FactoryTest, MultTest){
@@ -40,6 +43,7 @@ TEST(FactoryTest, MultTest){
     Factory calculate;
     Base* base = calculate.parse((char**)input, numInputs);
     EXPECT_EQ(base->evaluate(), 6);
+    EXPECT_EQ(base->stringify(), "2 * 3");
 }
 
 TEST(FactoryTest, DivTest){
@@ -48,14 +52,16 @@ TEST(FactoryTest, DivTest){
     Factory calculate;
     Base* base = calculate.parse((char**)input, numInputs);
     EXPECT_NEAR(base->evaluate(), 0.666, .01);
+    EXPECT_EQ(base->stringify(), "2 / 3");
 }
 
-TEST(FactoryTest, DivTest){
+TEST(FactoryTest, PowTest){
     const char* input[] = {"./test", "2", "**", "3"};
     int numInputs = 4;
     Factory calculate;
     Base* base = calculate.parse((char**)input, numInputs);
     EXPECT_EQ(base->evaluate(), 8);
+    EXPECT_EQ(base->stringify(), "2 ** 3");
 }
 
 TEST(FactoryTest, InvalidInput){
