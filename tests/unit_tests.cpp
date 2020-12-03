@@ -10,6 +10,54 @@
 #include <sstream>
 #include <array>
 
+TEST(FactoryTest, OpTest){
+    const char* input[] = {"./test", "2"};
+    int numInputs = 2;
+    Factory calculate;
+    Base* base = calculate.parse((char**)input, numInputs);
+    EXPECT_EQ(base->evaluate(), 2);
+}
+
+TEST(FactoryTest, AddTest){
+    const char* input[] = {"./test", "2", "+", "3"};
+    int numInputs = 4;
+    Factory calculate;
+    Base* base = calculate.parse((char**)input, numInputs);
+    EXPECT_EQ(base->evaluate(), 5);
+}
+
+TEST(FactoryTest, SubTest){
+    const char* input[] = {"./test", "2", "-", "3"};
+    int numInputs = 4;
+    Factory calculate;
+    Base* base = calculate.parse((char**)input, numInputs);
+    EXPECT_EQ(base->evaluate(), -1);
+}
+
+TEST(FactoryTest, MultTest){
+    const char* input[] = {"./test", "2", "*", "3"};
+    int numInputs = 4;
+    Factory calculate;
+    Base* base = calculate.parse((char**)input, numInputs);
+    EXPECT_EQ(base->evaluate(), 6);
+}
+
+TEST(FactoryTest, DivTest){
+    const char* input[] = {"./test", "2", "/", "3"};
+    int numInputs = 4;
+    Factory calculate;
+    Base* base = calculate.parse((char**)input, numInputs);
+    EXPECT_NEAR(base->evaluate(), 0.666, .01);
+}
+
+TEST(FactoryTest, DivTest){
+    const char* input[] = {"./test", "2", "**", "3"};
+    int numInputs = 4;
+    Factory calculate;
+    Base* base = calculate.parse((char**)input, numInputs);
+    EXPECT_EQ(base->evaluate(), 8);
+}
+
 TEST(FactoryTest, InvalidInput){
     const char* input[] = {"./test"};
     int numInputs = 1;
